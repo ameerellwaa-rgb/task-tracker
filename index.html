@@ -212,6 +212,20 @@ body { font-family:'Segoe UI',Tahoma,Arial,sans-serif; background:#f0f4f8; color
 .alert-danger  { background:#fee2e2; color:#b91c1c; border:1px solid #fca5a5; }
 .alert-warning { background:#fff7ed; color:#c2410c; border:1px solid #fed7aa; }
 .alert-info    { background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; }
+
+.dept-checks {
+  display:flex; flex-wrap:wrap; gap:6px; padding:8px;
+  border:2px solid #e2e8f0; border-radius:10px;
+  max-height:130px; overflow-y:auto;
+}
+.dept-check-lbl {
+  display:flex; align-items:center; gap:4px; padding:4px 10px;
+  border:1.5px solid #e2e8f0; border-radius:20px; cursor:pointer;
+  font-size:0.78rem; font-weight:600; color:#475569; transition:all 0.15s;
+  user-select:none;
+}
+.dept-check-lbl input { display:none; }
+.dept-check-lbl.checked { background:#1a4480; color:#fff; border-color:#1a4480; }
 </style>
 </head>
 <body>
@@ -244,9 +258,9 @@ body { font-family:'Segoe UI',Tahoma,Arial,sans-serif; background:#f0f4f8; color
   <div class="modal-box">
     <div class="modal-title" id="addTaskModalTitle">➕ إضافة مهمة جديدة</div>
     <div class="form-grid">
-      <div class="form-group">
-        <label class="form-label">القسم *</label>
-        <select class="form-select" id="f_dept"></select>
+      <div class="form-group full">
+        <label class="form-label">الأقسام المرتبطة * (اختار واحد أو أكتر)</label>
+        <div class="dept-checks" id="f_depts"></div>
       </div>
       <div class="form-group">
         <label class="form-label">المسؤول *</label>
@@ -433,8 +447,10 @@ window.addEventListener('DOMContentLoaded', () => {
   ).join('');
 
   // Populate dept select in add task form
-  document.getElementById('f_dept').innerHTML = DEPTS.map(d =>
-    `<option value="${d.name}">${d.name}</option>`
+  document.getElementById('f_depts').innerHTML = DEPTS.map(d =>
+    `<label class="dept-check-lbl" onclick="this.classList.toggle('checked')">
+       <input type="checkbox" class="dept-check" value="${d.name}"> ${d.icon} ${d.name}
+     </label>`
   ).join('');
 
   // Set today as default start date
@@ -525,7 +541,7 @@ async function loadAndShowDept(deptName) {
 }
 
 function updateDeptStats() {
-  const t = allTasks.filter(x => x.dept === activeDept);
+  const t = allTasks.filter(x => (x.depts||[x.dept]).includes(activeDept));
   document.getElementById('sTotal').textContent = t.length;
   document.getElementById('sNew').textContent   = t.filter(x => x.status === 'نشط').length;
   document.getElementById('sProg').textContent  = t.filter(x => x.status === 'قيد التنفيذ').length;
@@ -533,9 +549,9 @@ function updateDeptStats() {
 }
 
 function renderDeptCards() {
-  let tasks = allTasks.filter(x => x.dept === activeDept);
+  let tasks = allTasks.filter(x => (x.depts||[x.dept]).includes(activeDept));
   if (deptStatusFilter !== 'الكل') tasks = tasks.filter(x => x.status === deptStatusFilter);
-  const deptTasks = allTasks.filter(x => x.dept === activeDept);
+  const deptTasks = allTasks.filter(x => (x.depts||[x.dept]).includes(activeDept));
   showAlerts(deptTasks, 'deptAlert');
   document.getElementById('tasksGrid').innerHTML = buildCards(tasks, false);
   startCountdowns() + `<div class="last-upd">آخر تحديث: ${lastUpdated}</div>`;
@@ -580,9 +596,9 @@ function updateAdminStats() {
 }
 
 function renderAdminCards() {
-  let tasks = adminDeptFilter === 'الكل' ? allTasks : allTasks.filter(x => x.dept === adminDeptFilter);
+  let tasks = adminDeptFilter === 'الكل' ? allTasks : allTasks.filter(x => (x.depts||[x.dept]).includes(adminDeptFilter));
   if (adminStatusFilter !== 'الكل') tasks = tasks.filter(x => x.status === adminStatusFilter);
-  const adminSrc = adminDeptFilter === 'الكل' ? allTasks : allTasks.filter(x => x.dept === adminDeptFilter);
+  const adminSrc = adminDeptFilter === 'الكل' ? allTasks : allTasks.filter(x => (x.depts||[x.dept]).includes(adminDeptFilter));
   showAlerts(adminSrc, 'adminAlert');
   document.getElementById('adminTasksGrid').innerHTML = buildCards(tasks, true);
   startCountdowns() + `<div class="last-upd">آخر تحديث: ${lastUpdated}</div>`;
@@ -603,7 +619,7 @@ function buildCards(tasks, showDept) {
         <div class="badges">
           <span class="badge ${stClass(t.status)}">${t.status}</span>
           <span class="badge ${urgClass[t.urgency]||''}">${t.urgency}</span>
-          ${showDept ? `<span class="badge b-dept">${t.dept}</span>` : ''}
+          ${showDept ? (t.depts||[t.dept]).map(d=>`<span class="badge b-dept">${d}</span>`).join('') : ''}
         </div>
       </div>
       <div class="card-body">
@@ -630,6 +646,7 @@ function buildCards(tasks, showDept) {
 function openAddTask() {
   editingIndex = -1;
   document.getElementById('addTaskModalTitle').textContent = '➕ إضافة مهمة جديدة';
+  document.querySelectorAll('.dept-check-lbl').forEach(l=>l.classList.remove('checked'));
   document.getElementById('f_title').value = '';
   document.getElementById('f_desc').value = '';
   document.getElementById('f_owner').value = '';
@@ -647,7 +664,12 @@ function openEditTask(idx) {
   editingIndex = idx;
   const t = allTasks[idx];
   document.getElementById('addTaskModalTitle').textContent = '✏️ تعديل المهمة';
-  document.getElementById('f_dept').value    = t.dept;
+  const taskDepts = t.depts || [t.dept];
+  document.querySelectorAll('.dept-check-lbl').forEach(lbl => {
+    const cb = lbl.querySelector('.dept-check');
+    if (taskDepts.includes(cb.value)) lbl.classList.add('checked');
+    else lbl.classList.remove('checked');
+  });
   document.getElementById('f_owner').value   = t.owner;
   document.getElementById('f_title').value   = t.title;
   document.getElementById('f_desc').value    = t.description || '';
@@ -682,7 +704,8 @@ function fmtDate(dateStr) {
 }
 
 async function submitTask() {
-  const dept     = document.getElementById('f_dept').value;
+  const depts    = [...document.querySelectorAll('.dept-check-lbl.checked .dept-check')].map(cb=>cb.value);
+  const dept     = depts[0] || 'أخرى (الإدارة)';
   const title    = document.getElementById('f_title').value.trim();
   const desc     = document.getElementById('f_desc').value.trim();
   const owner    = document.getElementById('f_owner').value.trim();
@@ -692,6 +715,7 @@ async function submitTask() {
   const dlRaw    = document.getElementById('f_deadline').value;
   const notes    = document.getElementById('f_notes').value.trim();
 
+  if (depts.length === 0) { document.getElementById('saveMsg').style.color='#dc2626'; document.getElementById('saveMsg').textContent='⚠️ اختار قسم واحد على الأقل'; return; }
   if (!title || !owner || !startRaw || !dlRaw) {
     document.getElementById('saveMsg').style.color = '#dc2626';
     document.getElementById('saveMsg').textContent = '⚠️ يرجى تعبئة الحقول المطلوبة (*)';
@@ -700,7 +724,7 @@ async function submitTask() {
 
   const { daysLeft, deadlineStatus } = calcDeadlineInfo(dlRaw);
   const newTask = {
-    dept, title, description: desc, owner, urgency, status,
+    dept, depts, title, description: desc, owner, urgency, status,
     startDate: fmtDate(startRaw), deadline: fmtDate(dlRaw),
     daysLeft, deadlineStatus, notes
   };
