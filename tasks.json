@@ -1,0 +1,18 @@
+{
+  "lastUpdated": "2026-07-01 10:00",
+  "tasks": [
+    {
+      "dept": "قسم مصر",
+      "title": "مهمة تجريبية",
+      "description": "شرح تجريبي",
+      "owner": "أمير",
+      "urgency": "مهم ومستعجل",
+      "status": "لم تبدأ",
+      "startDate": "01/07/2026",
+      "deadline": "31/07/2026",
+      "daysLeft": 30,
+      "deadlineStatus": "مريح",
+      "notes": ""
+    }
+  ]
+}
