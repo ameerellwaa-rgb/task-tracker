@@ -448,9 +448,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Populate dept select in add task form
   document.getElementById('f_depts').innerHTML = DEPTS.map(d =>
-    `<label class="dept-check-lbl" onclick="this.classList.toggle('checked')">
-       <input type="checkbox" class="dept-check" value="${d.name}"> ${d.icon} ${d.name}
-     </label>`
+    `<div class="dept-check-lbl" onclick="this.classList.toggle('checked');this.querySelector('input').checked=this.classList.contains('checked');">
+       <input type="checkbox" class="dept-check" value="${d.name}" style="display:none;"> ${d.icon} ${d.name}
+     </div>`
   ).join('');
 
   // Set today as default start date
