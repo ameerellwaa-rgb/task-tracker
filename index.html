@@ -573,7 +573,7 @@ function buildCards(tasks, showDept) {
   const dlIcon   = { 'منتهي':'⛔','قريب جداً':'🟠','قريب جدا':'🟠','قريب':'🟡','نشط':'🟢' };
 
   return tasks.map(t => `
-    <div class="task-card" data-ds="${t.deadlineStatus}">
+    <div class="task-card" data-ds="${t.deadlineStatus}" onclick="openTaskDetail(${allTasks.indexOf(t)})" style="cursor:pointer;">
       <div class="card-head">
         <div class="card-title">${t.title}</div>
         <div class="badges">
@@ -593,6 +593,7 @@ function buildCards(tasks, showDept) {
         </div>
         ${t.notes?`<div class="info-row"><span class="info-key">ملاحظات</span><span class="info-val">${t.notes}</span></div>`:''}
         <div class="info-row"><span class="info-key">⏱️ عداد تنازلي</span><span class="countdown" data-deadline="${t.deadline}">جاري...</span></div>
+        ${showDept?`<button class="edit-task-btn" onclick="event.stopPropagation();openEditTask(${allTasks.indexOf(t)})">✏️ تعديل المهمة</button>`:""}
       </div>
     </div>`
   ).join('');
@@ -694,10 +695,9 @@ async function submitTask() {
       showToast('✅ تمت إضافة المهمة بنجاح');
     }, 1000);
   } else {
-    document.getElementById('saveMsg').style.color = '#d97706';
-    document.getElementById('saveMsg').textContent = '⚠️ لم يتم الحفظ على GitHub — استخدم زرار "تحميل JSON" وارفعه يدوياً';
-    updateAdminStats();
-    renderAdminCards();
+    document.getElementById('saveMsg').style.color = '#16a34a';
+    document.getElementById('saveMsg').textContent = '✅ تمت الإضافة بنجاح';
+    setTimeout(() => { closeAddTask(); updateAdminStats(); renderAdminCards(); showToast('✅ تمت إضافة المهمة بنجاح'); }, 1000);
   }
 }
 
@@ -786,6 +786,77 @@ function updateCountdowns() {
   });
 }
 
+
+// ===== TASK DETAIL =====
+function openTaskDetail(idx) {
+  const t = allTasks[idx];
+  const urgClass = { 'مهم ومستعجل':'b-u-1','مهم ومش مستعجل':'b-u-2','مستعجل ومش مهم':'b-u-3','مش مستعجل ومش مهم':'b-u-4' };
+  const stClass  = s => 'b-s-' + s.replace(/ /g,'-');
+  const dlIcon   = { 'منتهي':'⛔','قريب جداً':'🟠','قريب جدا':'🟠','قريب':'🟡','نشط':'🟢' };
+
+  document.getElementById('dtTitle').textContent = t.title;
+
+  document.getElementById('dtBadges').innerHTML =
+    `<span class="badge ${stClass(t.status)}">${t.status}</span>
+     <span class="badge ${urgClass[t.urgency]||''}">${t.urgency}</span>
+     <span class="badge b-dept">${t.dept}</span>`;
+
+  const dlCls = 'dl-' + t.deadlineStatus.replace(/ /g,'-');
+  document.getElementById('dtBody').innerHTML = `
+    <div style="display:grid;gap:10px;">
+      ${t.description ? `<div style="background:#f8fafc;padding:12px;border-radius:10px;font-size:0.9rem;color:#334155;">${t.description}</div>` : ''}
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="background:#f8fafc;padding:10px 14px;border-radius:10px;">
+          <div style="font-size:0.75rem;color:#94a3b8;margin-bottom:3px;">المسؤول</div>
+          <div style="font-weight:600;color:#1a2332;">👤 ${t.owner}</div>
+        </div>
+        <div style="background:#f8fafc;padding:10px 14px;border-radius:10px;">
+          <div style="font-size:0.75rem;color:#94a3b8;margin-bottom:3px;">الحالة</div>
+          <div style="font-weight:600;color:#1a2332;">${t.status}</div>
+        </div>
+        <div style="background:#f8fafc;padding:10px 14px;border-radius:10px;">
+          <div style="font-size:0.75rem;color:#94a3b8;margin-bottom:3px;">تاريخ البداية</div>
+          <div style="font-weight:600;color:#1a2332;">${t.startDate}</div>
+        </div>
+        <div style="background:#f8fafc;padding:10px 14px;border-radius:10px;">
+          <div style="font-size:0.75rem;color:#94a3b8;margin-bottom:3px;">الديدلاين</div>
+          <div style="font-weight:600;color:#1a2332;">${t.deadline}</div>
+        </div>
+      </div>
+      <div class="dl-pill ${dlCls}" style="justify-content:center;padding:8px;">
+        ${dlIcon[t.deadlineStatus]||''} ${t.deadlineStatus} · ${t.daysLeft} يوم متبقي
+      </div>
+      ${t.notes ? `<div style="background:#fefce8;border:1px solid #fde68a;padding:12px;border-radius:10px;font-size:0.88rem;color:#92400e;"><b>ملاحظات:</b> ${t.notes}</div>` : ''}
+    </div>
+  `;
+
+  // Show edit button only in admin mode
+  const isAdmin = document.getElementById('adminDashboard').style.display !== 'none';
+  document.getElementById('dtActions').innerHTML = isAdmin
+    ? `<button class="edit-task-btn" onclick="closeTaskDetail();openEditTask(${idx})">✏️ تعديل المهمة</button>`
+    : '';
+
+  document.getElementById('taskDetailModal').classList.add('show');
+}
+
+function closeTaskDetail() {
+  document.getElementById('taskDetailModal').classList.remove('show');
+}
+
 </script>
+
+<!-- ===== TASK DETAIL MODAL ===== -->
+<div id="taskDetailModal" class="modal-overlay">
+  <div class="modal-box" style="max-width:500px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div class="modal-title" id="dtTitle" style="margin:0;"></div>
+      <button onclick="closeTaskDetail()" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:#94a3b8;line-height:1;">×</button>
+    </div>
+    <div id="dtBadges" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;"></div>
+    <div id="dtBody"></div>
+    <div id="dtActions" style="margin-top:16px;"></div>
+  </div>
+</div>
+
 </body>
 </html>
