@@ -194,6 +194,24 @@ body { font-family:'Segoe UI',Tahoma,Arial,sans-serif; background:#f0f4f8; color
   justify-content:center; gap:5px;
 }
 .edit-task-btn:hover { background:#1a4480; color:#fff; border-color:#1a4480; }
+
+.delete-task-btn {
+  padding:8px 14px; background:#fff0f0; border:1.5px solid #fecaca;
+  border-radius:8px; color:#dc2626; font-size:1rem; cursor:pointer;
+  transition:all 0.15s; font-family:inherit; font-weight:600;
+}
+.delete-task-btn:hover { background:#dc2626; color:#fff; border-color:#dc2626; }
+.card-actions { display:flex; gap:8px; margin-top:10px; }
+.card-actions .edit-task-btn { flex:1; margin-top:0; }
+
+.alert-banner {
+  margin:12px 24px 0; padding:12px 20px; border-radius:12px;
+  font-weight:700; font-size:0.9rem; cursor:pointer; display:none;
+  animation:fadeUp 0.3s ease;
+}
+.alert-danger  { background:#fee2e2; color:#b91c1c; border:1px solid #fca5a5; }
+.alert-warning { background:#fff7ed; color:#c2410c; border:1px solid #fed7aa; }
+.alert-info    { background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; }
 </style>
 </head>
 <body>
@@ -290,6 +308,7 @@ body { font-family:'Segoe UI',Tahoma,Arial,sans-serif; background:#f0f4f8; color
       <button class="top-btn" onclick="goBack()">← رجوع</button>
     </div>
   </div>
+  <div id="deptAlert" class="alert-banner"></div>
   <div class="stats-row">
     <div class="stat-box s-total"><div class="stat-num" id="sTotal">0</div><div class="stat-label">إجمالي المهام</div></div>
     <div class="stat-box s-new"><div class="stat-num" id="sNew">0</div><div class="stat-label">لم تبدأ</div></div>
@@ -316,6 +335,7 @@ body { font-family:'Segoe UI',Tahoma,Arial,sans-serif; background:#f0f4f8; color
       <button class="top-btn" onclick="goBack()">← رجوع</button>
     </div>
   </div>
+  <div id="adminAlert" class="alert-banner"></div>
   <div class="stats-row">
     <div class="stat-box s-total"><div class="stat-num" id="asTotal">0</div><div class="stat-label">إجمالي المهام</div></div>
     <div class="stat-box s-new"><div class="stat-num" id="asNew">0</div><div class="stat-label">لم تبدأ</div></div>
@@ -515,6 +535,8 @@ function updateDeptStats() {
 function renderDeptCards() {
   let tasks = allTasks.filter(x => x.dept === activeDept);
   if (deptStatusFilter !== 'الكل') tasks = tasks.filter(x => x.status === deptStatusFilter);
+  const deptTasks = allTasks.filter(x => x.dept === activeDept);
+  showAlerts(deptTasks, 'deptAlert');
   document.getElementById('tasksGrid').innerHTML = buildCards(tasks, false);
   startCountdowns() + `<div class="last-upd">آخر تحديث: ${lastUpdated}</div>`;
 }
@@ -560,6 +582,8 @@ function updateAdminStats() {
 function renderAdminCards() {
   let tasks = adminDeptFilter === 'الكل' ? allTasks : allTasks.filter(x => x.dept === adminDeptFilter);
   if (adminStatusFilter !== 'الكل') tasks = tasks.filter(x => x.status === adminStatusFilter);
+  const adminSrc = adminDeptFilter === 'الكل' ? allTasks : allTasks.filter(x => x.dept === adminDeptFilter);
+  showAlerts(adminSrc, 'adminAlert');
   document.getElementById('adminTasksGrid').innerHTML = buildCards(tasks, true);
   startCountdowns() + `<div class="last-upd">آخر تحديث: ${lastUpdated}</div>`;
 }
@@ -593,7 +617,10 @@ function buildCards(tasks, showDept) {
         </div>
         ${t.notes?`<div class="info-row"><span class="info-key">ملاحظات</span><span class="info-val">${t.notes}</span></div>`:''}
         <div class="info-row"><span class="info-key">⏱️ عداد تنازلي</span><span class="countdown" data-deadline="${t.deadline}">جاري...</span></div>
-        ${showDept?`<button class="edit-task-btn" onclick="event.stopPropagation();openEditTask(${allTasks.indexOf(t)})">✏️ تعديل المهمة</button>`:""}
+        ${showDept?`<div class="card-actions">
+          <button class="edit-task-btn" onclick="event.stopPropagation();openEditTask(${allTasks.indexOf(t)})">✏️ تعديل</button>
+          <button class="delete-task-btn" onclick="event.stopPropagation();deleteTask(${allTasks.indexOf(t)})">🗑️ حذف</button>
+        </div>`:""}
       </div>
     </div>`
   ).join('');
@@ -855,7 +882,10 @@ function openTaskDetail(idx) {
   // Show edit button only in admin mode
   const isAdmin = document.getElementById('adminDashboard').style.display !== 'none';
   document.getElementById('dtActions').innerHTML = isAdmin
-    ? `<button class="edit-task-btn" onclick="closeTaskDetail();openEditTask(${idx})">✏️ تعديل المهمة</button>`
+    ? `<div class="card-actions" style="margin-top:0;">
+         <button class="edit-task-btn" onclick="closeTaskDetail();openEditTask(${idx})">✏️ تعديل</button>
+         <button class="delete-task-btn" onclick="closeTaskDetail();deleteTask(${idx})">🗑️ حذف</button>
+       </div>`
     : '';
 
   document.getElementById('taskDetailModal').classList.add('show');
@@ -863,6 +893,43 @@ function openTaskDetail(idx) {
 
 function closeTaskDetail() {
   document.getElementById('taskDetailModal').classList.remove('show');
+}
+
+
+// ===== DELETE TASK =====
+async function deleteTask(idx) {
+  if (!confirm('هل أنت متأكد من حذف هذه المهمة؟')) return;
+  allTasks.splice(idx, 1);
+  lastUpdated = new Date().toLocaleString('ar-EG');
+  const saved = await saveToGitHub();
+  updateAdminStats();
+  renderAdminCards();
+  showAlerts(allTasks, 'adminAlert');
+  showToast(saved ? '🗑️ تم الحذف وحُفظ على GitHub' : '🗑️ تم الحذف — حمّل JSON وارفعه');
+}
+
+// ===== ALERTS =====
+function showAlerts(tasks, bannerId) {
+  const expired = tasks.filter(t => t.deadlineStatus === 'منتهي');
+  const urgent  = tasks.filter(t => t.deadlineStatus === 'قريب جداً' || t.deadlineStatus === 'قريب جدا');
+  const banner  = document.getElementById(bannerId);
+  if (!banner) return;
+
+  if (expired.length > 0 && urgent.length > 0) {
+    banner.textContent = `⛔ ${expired.length} مهمة انتهت + 🟠 ${urgent.length} مهمة قريب جداً`;
+    banner.className = 'alert-banner alert-danger';
+  } else if (expired.length > 0) {
+    banner.textContent = `⛔ ${expired.length} مهمة انتهى ديدلاينها — يحتاج متابعة فورية`;
+    banner.className = 'alert-banner alert-danger';
+  } else if (urgent.length > 0) {
+    banner.textContent = `🟠 ${urgent.length} مهمة ديدلاينها خلال أسبوع`;
+    banner.className = 'alert-banner alert-warning';
+  } else {
+    banner.className = 'alert-banner';
+    banner.style.display = 'none';
+    return;
+  }
+  banner.style.display = 'block';
 }
 
 </script>
