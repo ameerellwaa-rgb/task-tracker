@@ -760,12 +760,13 @@ const WEBHOOK_URL = 'https://n8n-automation.ellwaa.com/webhook/task-tracker';
 
 async function saveToGitHub(action, taskIndex, taskData) {
   try {
-    const res = await fetch(WEBHOOK_URL, {
+    await fetch(WEBHOOK_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify({ action, index: taskIndex, task: taskData })
     });
-    return res.ok;
+    return true;
   } catch { return false; }
 }
 
