@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٥‏/٧‏/٢٠٢٦، ٢:٥٣:٥٧ م",
+  "lastUpdated": "٥‏/٧‏/٢٠٢٦، ٢:٥٨:٤٣ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -667,6 +667,22 @@
       "daysLeft": 26,
       "deadlineStatus": "نشط",
       "notes": "سشيسشي"
+    },
+    {
+      "dept": "قسم مصر",
+      "depts": [
+        "قسم مصر"
+      ],
+      "title": "sadsadsad",
+      "description": "sadsad",
+      "owner": "sadasdsa",
+      "urgency": "مهم ومستعجل",
+      "status": "نشط",
+      "startDate": "05/07/2026",
+      "deadline": "31/07/2026",
+      "daysLeft": 26,
+      "deadlineStatus": "نشط",
+      "notes": "sadsad"
     }
   ]
 }
