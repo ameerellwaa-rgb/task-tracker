@@ -381,9 +381,6 @@ body { font-family:'Segoe UI',Tahoma,Arial,sans-serif; background:#f0f4f8; color
 const CONFIG = {
   ADMIN_PASSWORD: 'ELlwaa@2026',   // كلمة سر الإدارة
   DATA_URL: 'https://raw.githubusercontent.com/ameerellwaa-rgb/task-tracker/main/tasks.json',
-  GITHUB_TOKEN: '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',                 // اختياري: ضع GitHub Personal Access Token لحفظ المهام تلقائياً
-  GITHUB_REPO: 'ameerellwaa-rgb/task-tracker',
-  GITHUB_FILE: 'tasks.json',
 };
 
 // كلمات سر الأقسام
@@ -733,13 +730,15 @@ async function submitTask() {
     daysLeft, deadlineStatus, notes
   };
 
+  const action = editingIndex >= 0 ? 'edit' : 'add';
+  const taskIdx = editingIndex;
   if (editingIndex >= 0) { allTasks[editingIndex] = newTask; } else { allTasks.push(newTask); }
   lastUpdated = new Date().toLocaleString('ar-EG');
 
   document.getElementById('saveMsg').style.color = '#64748b';
   document.getElementById('saveMsg').textContent = '⏳ جاري الحفظ...';
 
-  const saved = await saveToGitHub();
+  const saved = await saveToGitHub(action, taskIdx, newTask);
   if (saved) {
     document.getElementById('saveMsg').style.color = '#16a34a';
     document.getElementById('saveMsg').textContent = '✅ تم الحفظ على GitHub!';
@@ -756,26 +755,17 @@ async function submitTask() {
   }
 }
 
-// ===== GITHUB SAVE =====
-async function saveToGitHub() {
-  if (!CONFIG.GITHUB_TOKEN) return false;
+// ===== N8N WEBHOOK SAVE =====
+const WEBHOOK_URL = 'https://n8n-automation.ellwaa.com/webhook/task-tracker';
+
+async function saveToGitHub(action, taskIndex, taskData) {
   try {
-    const apiUrl = `https://api.github.com/repos/${CONFIG.GITHUB_REPO}/contents/${CONFIG.GITHUB_FILE}`;
-    const headers = { 'Authorization': `token ${CONFIG.GITHUB_TOKEN}`, 'Content-Type': 'application/json' };
-
-    const getRes = await fetch(apiUrl, { headers });
-    const fileData = await getRes.json();
-    const sha = fileData.sha;
-
-    const content = btoa(unescape(encodeURIComponent(
-      JSON.stringify({ lastUpdated: lastUpdated, tasks: allTasks }, null, 2)
-    )));
-
-    const putRes = await fetch(apiUrl, {
-      method: 'PUT', headers,
-      body: JSON.stringify({ message: 'تحديث المهام', content, sha })
+    const res = await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action, index: taskIndex, task: taskData })
     });
-    return putRes.ok;
+    return res.ok;
   } catch { return false; }
 }
 
@@ -927,9 +917,10 @@ function closeTaskDetail() {
 // ===== DELETE TASK =====
 async function deleteTask(idx) {
   if (!confirm('هل أنت متأكد من حذف هذه المهمة؟')) return;
+  const deletedTask = allTasks[idx];
   allTasks.splice(idx, 1);
   lastUpdated = new Date().toLocaleString('ar-EG');
-  const saved = await saveToGitHub();
+  const saved = await saveToGitHub('delete', idx, deletedTask);
   updateAdminStats();
   renderAdminCards();
   showAlerts(allTasks, 'adminAlert');
