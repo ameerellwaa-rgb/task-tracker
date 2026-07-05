@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-01 10:42",
+  "lastUpdated": "٥‏/٧‏/٢٠٢٦، ٢:٥٣:٥٧ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -651,6 +651,22 @@
       "daysLeft": 62,
       "deadlineStatus": "نشط",
       "notes": ""
+    },
+    {
+      "dept": "قسم الكواليتي",
+      "depts": [
+        "قسم الكواليتي"
+      ],
+      "title": "سشيسشي",
+      "description": "سشيسشي",
+      "owner": "سشيشسي",
+      "urgency": "مهم ومستعجل",
+      "status": "تم التنفيذ",
+      "startDate": "05/07/2026",
+      "deadline": "31/07/2026",
+      "daysLeft": 26,
+      "deadlineStatus": "نشط",
+      "notes": "سشيسشي"
     }
   ]
 }
