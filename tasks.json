@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٥‏/٧‏/٢٠٢٦، ٣:٢١:٣٦ م",
+  "lastUpdated": "٥‏/٧‏/٢٠٢٦، ٣:٢٨:٢١ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -714,6 +714,22 @@
       "deadline": "08/07/2026",
       "daysLeft": 3,
       "deadlineStatus": "قريب جداً",
+      "notes": ""
+    },
+    {
+      "dept": "قسم HR",
+      "depts": [
+        "قسم HR"
+      ],
+      "title": "فصل احمد حسن الجديد",
+      "description": "عدم التوافق مع الاداره",
+      "owner": "ا/ محمد احمد",
+      "urgency": "مهم ومستعجل",
+      "status": "تم التنفيذ",
+      "startDate": "03/07/2026",
+      "deadline": "04/07/2026",
+      "daysLeft": -1,
+      "deadlineStatus": "منتهي",
       "notes": ""
     }
   ]
