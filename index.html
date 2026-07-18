@@ -732,8 +732,6 @@ async function submitTask() {
 
   const action = editingIndex >= 0 ? 'edit' : 'add';
   const taskIdx = editingIndex;
-  if (editingIndex >= 0) { allTasks[editingIndex] = newTask; } else { allTasks.push(newTask); }
-  lastUpdated = new Date().toLocaleString('ar-EG');
 
   document.getElementById('saveMsg').style.color = '#64748b';
   document.getElementById('saveMsg').textContent = '⏳ جاري الحفظ...';
@@ -755,19 +753,36 @@ async function submitTask() {
   }
 }
 
-// ===== N8N WEBHOOK SAVE =====
+// ===== SAVE VIA N8N PROXY =====
 const WEBHOOK_URL = 'https://n8n-automation.ellwaa.com/webhook/task-tracker';
+const GITHUB_META = 'https://api.github.com/repos/ameerellwaa-rgb/task-tracker/contents/tasks.json';
 
 async function saveToGitHub(action, taskIndex, taskData) {
   try {
+    const metaRes = await fetch(GITHUB_META);
+    if (!metaRes.ok) return false;
+    const meta = await metaRes.json();
+    const sha = meta.sha;
+    const data = JSON.parse(atob(meta.content.replace(/\n/g, '')));
+
+    if (action === 'add') { data.tasks.push(taskData); }
+    else if (action === 'edit' && taskIndex >= 0) { data.tasks[taskIndex] = taskData; }
+    else if (action === 'delete' && taskIndex >= 0) { data.tasks.splice(taskIndex, 1); }
+    data.lastUpdated = new Date().toLocaleString('ar-EG', { timeZone: 'Africa/Cairo' });
+
+    allTasks = data.tasks;
+    lastUpdated = data.lastUpdated;
+
+    const newContent = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+
     await fetch(WEBHOOK_URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ action, index: taskIndex, task: taskData })
+      body: JSON.stringify({ sha, content: newContent })
     });
     return true;
-  } catch { return false; }
+  } catch(e) { console.error('Save error:', e); return false; }
 }
 
 // ===== DOWNLOAD JSON =====
@@ -919,8 +934,6 @@ function closeTaskDetail() {
 async function deleteTask(idx) {
   if (!confirm('هل أنت متأكد من حذف هذه المهمة؟')) return;
   const deletedTask = allTasks[idx];
-  allTasks.splice(idx, 1);
-  lastUpdated = new Date().toLocaleString('ar-EG');
   const saved = await saveToGitHub('delete', idx, deletedTask);
   updateAdminStats();
   renderAdminCards();
