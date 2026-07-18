@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٥‏/٧‏/٢٠٢٦، ٣:٤٠:٢٨ م",
+  "lastUpdated": "١٩‏/٧‏/٢٠٢٦، ١٢:٥٣:٥٣ ص",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -747,6 +747,22 @@
       "daysLeft": 6,
       "deadlineStatus": "قريب جداً",
       "notes": ""
+    },
+    {
+      "dept": "قسم مصر",
+      "depts": [
+        "قسم مصر"
+      ],
+      "title": "ششش",
+      "description": "ششش",
+      "owner": "ششش",
+      "urgency": "مهم ومستعجل",
+      "status": "نشط",
+      "startDate": "18/07/2026",
+      "deadline": "31/07/2026",
+      "daysLeft": 12,
+      "deadlineStatus": "قريب",
+      "notes": "شش"
     }
   ]
 }
