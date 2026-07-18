@@ -759,11 +759,13 @@ const GITHUB_META = 'https://api.github.com/repos/ameerellwaa-rgb/task-tracker/c
 
 async function saveToGitHub(action, taskIndex, taskData) {
   try {
-    const metaRes = await fetch(GITHUB_META, { cache: 'no-store' });
+    const metaRes = await fetch(GITHUB_META + '?_=' + Date.now(), { cache: 'no-store' });
     if (!metaRes.ok) return false;
     const meta = await metaRes.json();
-    const sha = meta.sha;
-    const data = JSON.parse(atob(meta.content.replace(/\n/g, '')));
+
+    // فك تشفير base64 مع دعم العربية
+    const bytes = Uint8Array.from(atob(meta.content.replace(/\n/g, '')), c => c.charCodeAt(0));
+    const data = JSON.parse(new TextDecoder('utf-8').decode(bytes));
 
     if (action === 'add') { data.tasks.push(taskData); }
     else if (action === 'edit' && taskIndex >= 0) { data.tasks[taskIndex] = taskData; }
@@ -773,13 +775,18 @@ async function saveToGitHub(action, taskIndex, taskData) {
     allTasks = data.tasks;
     lastUpdated = data.lastUpdated;
 
-    const newContent = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+    // إعادة تشفير base64 مع دعم العربية
+    const jsonOut = JSON.stringify(data, null, 2);
+    const utf8 = new TextEncoder().encode(jsonOut);
+    let bin = '';
+    for (let i = 0; i < utf8.length; i++) bin += String.fromCharCode(utf8[i]);
+    const newContent = btoa(bin);
 
     await fetch(WEBHOOK_URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ sha, content: newContent })
+      body: JSON.stringify({ content: newContent })
     });
     return true;
   } catch(e) { console.error('Save error:', e); return false; }
