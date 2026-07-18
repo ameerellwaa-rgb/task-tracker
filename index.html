@@ -759,7 +759,7 @@ const GITHUB_META = 'https://api.github.com/repos/ameerellwaa-rgb/task-tracker/c
 
 async function saveToGitHub(action, taskIndex, taskData) {
   try {
-    const metaRes = await fetch(GITHUB_META);
+    const metaRes = await fetch(GITHUB_META, { cache: 'no-store' });
     if (!metaRes.ok) return false;
     const meta = await metaRes.json();
     const sha = meta.sha;
