@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "١٩‏/٧‏/٢٠٢٦، ٣:٤٩:٤٢ م",
+  "lastUpdated": "١٩‏/٧‏/٢٠٢٦، ٣:٤٩:٥٧ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -747,22 +747,6 @@
       "daysLeft": 6,
       "deadlineStatus": "قريب جداً",
       "notes": ""
-    },
-    {
-      "dept": "قسم مصر",
-      "depts": [
-        "قسم مصر"
-      ],
-      "title": "aa",
-      "description": "aa",
-      "owner": "aa",
-      "urgency": "مهم ومستعجل",
-      "status": "نشط",
-      "startDate": "19/07/2026",
-      "deadline": "23/07/2026",
-      "daysLeft": 4,
-      "deadlineStatus": "قريب جداً",
-      "notes": "aa"
     }
   ]
 }
