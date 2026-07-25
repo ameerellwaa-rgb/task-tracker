@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٢٥‏/٧‏/٢٠٢٦، ٢:٤١:٤٠ م",
+  "lastUpdated": "٢٥‏/٧‏/٢٠٢٦، ٢:٤٢:٠٢ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -272,11 +272,11 @@
       "description": "التاكيد علي كريم crm في النزول والتعلم من مستشار محمد اللواء ضرورييييي",
       "owner": "محمداللواء, صبيح",
       "urgency": "مهم ومستعجل",
-      "status": "قيد التنفيذ",
+      "status": "تم التنفيذ",
       "startDate": "01/07/2026",
       "deadline": "20/07/2026",
-      "daysLeft": 20,
-      "deadlineStatus": "نشط",
+      "daysLeft": -5,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
