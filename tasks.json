@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٢٥‏/٧‏/٢٠٢٦، ٢:٤٠:٥٩ م",
+  "lastUpdated": "٢٥‏/٧‏/٢٠٢٦، ٢:٤١:١٢ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -322,11 +322,11 @@
       "description": "رقم مع الاكونت مانجرز\nفتح اسس عند الاكوننت منجر كلهم",
       "owner": "مستر وليد, HR",
       "urgency": "مهم ومستعجل",
-      "status": "قيد التنفيذ",
+      "status": "تم التنفيذ",
       "startDate": "01/07/2026",
       "deadline": "20/07/2026",
-      "daysLeft": 20,
-      "deadlineStatus": "نشط",
+      "daysLeft": -5,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
