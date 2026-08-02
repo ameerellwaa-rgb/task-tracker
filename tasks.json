@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٢‏/٨‏/٢٠٢٦، ٥:٣١:٥٣ م",
+  "lastUpdated": "٢‏/٨‏/٢٠٢٦، ٥:٣٢:١٨ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -420,11 +420,11 @@
       "description": "",
       "owner": "احمد شكري",
       "urgency": "مهم ومستعجل",
-      "status": "قيد التنفيذ",
+      "status": "تم التنفيذ",
       "startDate": "01/07/2026",
       "deadline": "20/07/2026",
-      "daysLeft": 20,
-      "deadlineStatus": "نشط",
+      "daysLeft": -13,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
