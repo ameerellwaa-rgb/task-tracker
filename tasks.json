@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٢‏/٨‏/٢٠٢٦، ٥:٣٣:٢٨ م",
+  "lastUpdated": "٢‏/٨‏/٢٠٢٦، ٥:٣٣:٤٦ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -305,11 +305,11 @@
       "description": "هنشوف مين الشخص المفوض اللي ممكن يقوم بالمهمة دي",
       "owner": "صبيح",
       "urgency": "مهم ومش مستعجل",
-      "status": "نشط",
+      "status": "كنسل",
       "startDate": "01/07/2026",
       "deadline": "20/07/2026",
-      "daysLeft": 20,
-      "deadlineStatus": "نشط",
+      "daysLeft": -13,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
