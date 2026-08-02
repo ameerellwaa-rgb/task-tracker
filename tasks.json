@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٢‏/٨‏/٢٠٢٦، ٥:٣٢:١٨ م",
+  "lastUpdated": "٢‏/٨‏/٢٠٢٦، ٥:٣٢:٤٠ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -645,10 +645,10 @@
       "description": "تنظيم كل مهمه وكل مشكله في منهج يحل المسئله او ينظمها بشكل متكرر https://docs.google.com/document/d/1YTrfiFslVlEs-271LzDcSE5M9N9283ldJUJCjL3SSJo/edit?tab=t.0",
       "owner": "صبيح",
       "urgency": "مهم ومستعجل",
-      "status": "نشط",
+      "status": "كنسل",
       "startDate": "01/07/2026",
       "deadline": "31/08/2026",
-      "daysLeft": 62,
+      "daysLeft": 29,
       "deadlineStatus": "نشط",
       "notes": ""
     },
