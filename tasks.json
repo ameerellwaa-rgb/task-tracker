@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٢‏/٨‏/٢٠٢٦، ٥:٢٩:٥٩ م",
+  "lastUpdated": "٢‏/٨‏/٢٠٢٦، ٥:٣٠:٢٢ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -855,11 +855,11 @@
       "description": "يقوم استاذ كريم بشرح صياغة العقود و عرض السعر على موبايل السيلز",
       "owner": "استاذ كريم",
       "urgency": "مهم ومستعجل",
-      "status": "قيد التنفيذ",
+      "status": "تم التنفيذ",
       "startDate": "25/07/2026",
       "deadline": "30/07/2026",
-      "daysLeft": 5,
-      "deadlineStatus": "قريب جداً",
+      "daysLeft": -3,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
