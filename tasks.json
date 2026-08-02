@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٢‏/٨‏/٢٠٢٦، ٥:٣٥:٠٠ م",
+  "lastUpdated": "٢‏/٨‏/٢٠٢٦، ٥:٣٥:٣٤ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -565,11 +565,11 @@
       "description": "مطلوب من ا ايهاب عمل 5 كرياتف للبيع بالغه الانجليزيه",
       "owner": "Quality",
       "urgency": "مهم ومستعجل",
-      "status": "نشط",
+      "status": "تم التنفيذ",
       "startDate": "01/07/2026",
       "deadline": "07/07/2026",
-      "daysLeft": 7,
-      "deadlineStatus": "قريب جداً",
+      "daysLeft": -26,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
