@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٢‏/٨‏/٢٠٢٦، ٥:٣٤:٢٧ م",
+  "lastUpdated": "٢‏/٨‏/٢٠٢٦، ٥:٣٥:٠٠ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -74,11 +74,11 @@
       "description": "",
       "owner": "Quality",
       "urgency": "مهم ومستعجل",
-      "status": "نشط",
+      "status": "تم التنفيذ",
       "startDate": "01/07/2026",
       "deadline": "20/07/2026",
-      "daysLeft": 20,
-      "deadlineStatus": "نشط",
+      "daysLeft": -13,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
