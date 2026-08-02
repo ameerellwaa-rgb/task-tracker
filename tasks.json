@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٢‏/٨‏/٢٠٢٦، ٥:٣٠:٢٢ م",
+  "lastUpdated": "٢‏/٨‏/٢٠٢٦، ٥:٣٠:٣٤ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -1067,11 +1067,11 @@
       "description": "استاذ كريم السي ار ام هيرجع للبشمهندس كريم و استاذ محمد اللواء فى خصوص سعر الVIP",
       "owner": "استاذ كريم",
       "urgency": "مهم ومستعجل",
-      "status": "قيد التنفيذ",
+      "status": "تم التنفيذ",
       "startDate": "25/07/2026",
       "deadline": "30/07/2026",
-      "daysLeft": 5,
-      "deadlineStatus": "قريب جداً",
+      "daysLeft": -3,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
