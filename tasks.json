@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "١‏/٨‏/٢٠٢٦، ٥:٥٢:٥٠ م",
+  "lastUpdated": "٢‏/٨‏/٢٠٢٦، ٤:٢١:٢٣ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -58,11 +58,11 @@
       "description": "المطلوب ان الشيت الي احنا شغلين عليه ده يتنقل علي الcrm  معاد نهائي 18 ينيو",
       "owner": "Quality",
       "urgency": "مهم ومش مستعجل",
-      "status": "نشط",
+      "status": "تم التنفيذ",
       "startDate": "01/07/2026",
       "deadline": "20/07/2026",
-      "daysLeft": 20,
-      "deadlineStatus": "نشط",
+      "daysLeft": -13,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
