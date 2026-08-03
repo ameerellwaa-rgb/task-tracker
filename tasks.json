@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٣‏/٨‏/٢٠٢٦، ١١:٤١:٥٠ ص",
+  "lastUpdated": "٣‏/٨‏/٢٠٢٦، ١١:٤٣:١١ ص",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -1153,6 +1153,22 @@
       "startDate": "03/08/2026",
       "deadline": "04/08/2026",
       "daysLeft": 1,
+      "deadlineStatus": "قريب جداً",
+      "notes": ""
+    },
+    {
+      "dept": "قسم HR",
+      "depts": [
+        "قسم HR"
+      ],
+      "title": "كورس علاقات عامه لاسراء",
+      "description": "اشترطات الكورس حضوري مفيد جداً في مواعيد العمل",
+      "owner": "استاذ محمد الاتش ار",
+      "urgency": "مهم ومستعجل",
+      "status": "قيد التنفيذ",
+      "startDate": "03/08/2026",
+      "deadline": "03/08/2026",
+      "daysLeft": 0,
       "deadlineStatus": "قريب جداً",
       "notes": ""
     }
