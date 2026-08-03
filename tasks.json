@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٣‏/٨‏/٢٠٢٦، ١١:٤٤:٤٦ ص",
+  "lastUpdated": "٣‏/٨‏/٢٠٢٦، ١٢:٠٤:٠٥ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -1187,6 +1187,22 @@
       "daysLeft": -1,
       "deadlineStatus": "منتهي",
       "notes": "https://docs.google.com/document/d/1tcLymgG-eq6mSa1IijPqp7q5CpzrZxUTZ6pSUaBsG6A/edit?tab=t.0"
+    },
+    {
+      "dept": "أخرى (الإدارة)",
+      "depts": [
+        "أخرى (الإدارة)"
+      ],
+      "title": "الcrm بتاع السيلز",
+      "description": "",
+      "owner": "استاذ وليد و استاذ كريم درويش",
+      "urgency": "مهم ومستعجل",
+      "status": "قيد التنفيذ",
+      "startDate": "03/08/2026",
+      "deadline": "08/08/2026",
+      "daysLeft": 5,
+      "deadlineStatus": "قريب جداً",
+      "notes": ""
     }
   ]
 }
