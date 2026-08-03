@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٣‏/٨‏/٢٠٢٦، ١١:٤٣:١١ ص",
+  "lastUpdated": "٣‏/٨‏/٢٠٢٦، ١١:٤٤:٤٦ ص",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -1171,6 +1171,22 @@
       "daysLeft": 0,
       "deadlineStatus": "قريب جداً",
       "notes": ""
+    },
+    {
+      "dept": "قسم HR",
+      "depts": [
+        "قسم HR"
+      ],
+      "title": "تدريب السيلز",
+      "description": "المطلوب تعديل المستند من محمد اللواء وتكملته والاضافه اليه ومن محمد موارد بشريه يضيفه علي شيت التدريب \nومحمد اللواء يدرب السيلز بالتدريج علي المهرات الي موجوده فيه ومشاركته بعد اكتماله مع كريم اللواء لتدريب فريقه",
+      "owner": "استاذ محمد الاتش ار",
+      "urgency": "مهم ومستعجل",
+      "status": "تم التنفيذ",
+      "startDate": "03/08/2026",
+      "deadline": "02/08/2026",
+      "daysLeft": -1,
+      "deadlineStatus": "منتهي",
+      "notes": "https://docs.google.com/document/d/1tcLymgG-eq6mSa1IijPqp7q5CpzrZxUTZ6pSUaBsG6A/edit?tab=t.0"
     }
   ]
 }
