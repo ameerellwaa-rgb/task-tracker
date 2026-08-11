@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "١١‏/٨‏/٢٠٢٦، ١:١٨:٣١ م",
+  "lastUpdated": "١١‏/٨‏/٢٠٢٦، ١:٢٥:٠٤ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -581,11 +581,11 @@
       "description": "مش مهم القيد يكون شاطر في الكتابه مدني مش مهم جنائي ويكون محترم",
       "owner": "نورا ابو الخير",
       "urgency": "مهم ومستعجل",
-      "status": "نشط",
+      "status": "تم التنفيذ",
       "startDate": "01/07/2026",
       "deadline": "07/07/2026",
-      "daysLeft": 7,
-      "deadlineStatus": "قريب جداً",
+      "daysLeft": -35,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
