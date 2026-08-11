@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "١١‏/٨‏/٢٠٢٦، ١٢:٣٨:١٠ م",
+  "lastUpdated": "١١‏/٨‏/٢٠٢٦، ١٢:٣٨:٣٩ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -1359,11 +1359,11 @@
       "description": "\"المطلوب عمل الكونتنت بتاع المحاضره و اختيار مدرب\nوتحديد موعد\"",
       "owner": "سلمي",
       "urgency": "مهم ومستعجل",
-      "status": "قيد التنفيذ",
+      "status": "كنسل",
       "startDate": "03/08/2026",
       "deadline": "15/08/2026",
-      "daysLeft": 12,
-      "deadlineStatus": "قريب",
+      "daysLeft": 4,
+      "deadlineStatus": "قريب جداً",
       "notes": ""
     },
     {
