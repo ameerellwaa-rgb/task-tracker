@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٨‏/٨‏/٢٠٢٦، ١:٥٣:٣٤ م",
+  "lastUpdated": "١١‏/٨‏/٢٠٢٦، ١٢:١٥:١٣ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -1165,11 +1165,11 @@
       "description": "اشترطات الكورس حضوري مفيد جداً في مواعيد العمل",
       "owner": "استاذ محمد الاتش ار",
       "urgency": "مهم ومستعجل",
-      "status": "قيد التنفيذ",
+      "status": "تم التنفيذ",
       "startDate": "03/08/2026",
       "deadline": "03/08/2026",
-      "daysLeft": 0,
-      "deadlineStatus": "قريب جداً",
+      "daysLeft": -8,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
