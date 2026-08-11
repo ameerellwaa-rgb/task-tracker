@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "١١‏/٨‏/٢٠٢٦، ١٢:٥١:٤٠ م",
+  "lastUpdated": "١١‏/٨‏/٢٠٢٦، ١٢:٥٥:٠٥ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -436,11 +436,11 @@
       "description": "يتبقي فقط المحامين الرجوع الي الHR عشان لو فاضل اي قسم متمش رفع الحد الادني للاجور فيه",
       "owner": "د/ صلاح",
       "urgency": "مهم ومش مستعجل",
-      "status": "نشط",
+      "status": "تم التنفيذ",
       "startDate": "01/07/2026",
       "deadline": "30/06/2026",
-      "daysLeft": 0,
-      "deadlineStatus": "قريب جداً",
+      "daysLeft": -42,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
