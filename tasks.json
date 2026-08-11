@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "١١‏/٨‏/٢٠٢٦، ١٢:٥٥:٠٥ م",
+  "lastUpdated": "١١‏/٨‏/٢٠٢٦، ١٢:٥٦:٥٧ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -1425,11 +1425,11 @@
       "description": "تحديد ايه ال kpi بتاعت مدير الفرع وايه الخصومات وخلافه",
       "owner": "رؤساء مجلس الادارة",
       "urgency": "مهم ومستعجل",
-      "status": "قيد التنفيذ",
+      "status": "تم التنفيذ",
       "startDate": "03/08/2026",
       "deadline": "15/08/2026",
-      "daysLeft": 12,
-      "deadlineStatus": "قريب",
+      "daysLeft": 4,
+      "deadlineStatus": "قريب جداً",
       "notes": ""
     },
     {
