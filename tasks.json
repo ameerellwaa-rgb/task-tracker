@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "١٩‏/٨‏/٢٠٢٦، ١٢:١٠:٢٢ م",
+  "lastUpdated": "١٩‏/٨‏/٢٠٢٦، ١٢:١١:١٥ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -1229,11 +1229,11 @@
       "description": "ا احمد شكري يكلم تامر شلتوت يخليه يوافق او يرفض ونشوف الي بعد كده",
       "owner": "استاذ احمد شكرى",
       "urgency": "مهم ومستعجل",
-      "status": "قيد التنفيذ",
+      "status": "كنسل",
       "startDate": "03/08/2026",
       "deadline": "08/08/2026",
-      "daysLeft": 5,
-      "deadlineStatus": "قريب جداً",
+      "daysLeft": -11,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
