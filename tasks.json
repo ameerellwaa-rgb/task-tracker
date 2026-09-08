@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٨‏/٩‏/٢٠٢٦، ١١:٢٧:٠١ ص",
+  "lastUpdated": "٨‏/٩‏/٢٠٢٦، ١٢:٣٩:٢٨ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -93,9 +93,9 @@
       "status": "نشط",
       "startDate": "01/07/2026",
       "deadline": "20/07/2026",
-      "daysLeft": 20,
-      "deadlineStatus": "نشط",
-      "notes": ""
+      "daysLeft": -50,
+      "deadlineStatus": "منتهي",
+      "notes": "تم عمل الايام فقط\nلكن السبب لسا تاخير من قسم التك"
     },
     {
       "dept": "أخرى (الإدارة)",
