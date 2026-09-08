@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٨‏/٩‏/٢٠٢٦، ١٢:٣٩:٢٨ م",
+  "lastUpdated": "٨‏/٩‏/٢٠٢٦، ١٢:٤٠:٠٨ م",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -661,11 +661,11 @@
       "description": "تدريب الاكونت منجر علي الاجراء الجديد واخطار الكولتي بالمتابعه",
       "owner": "ا/ ايهاب",
       "urgency": "مهم ومستعجل",
-      "status": "نشط",
+      "status": "تم التنفيذ",
       "startDate": "05/07/2026",
       "deadline": "09/07/2026",
-      "daysLeft": 4,
-      "deadlineStatus": "قريب جداً",
+      "daysLeft": -61,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
