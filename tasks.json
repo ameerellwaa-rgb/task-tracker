@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٨‏/٩‏/٢٠٢٦، ١١:١٩:٠٤ ص",
+  "lastUpdated": "٨‏/٩‏/٢٠٢٦، ١١:٢٧:٠١ ص",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -1376,11 +1376,11 @@
       "description": "",
       "owner": "استاذ ايهاب و استاذة سلمي",
       "urgency": "مهم ومستعجل",
-      "status": "قيد التنفيذ",
+      "status": "تم التنفيذ",
       "startDate": "03/08/2026",
       "deadline": "16/08/2026",
-      "daysLeft": 13,
-      "deadlineStatus": "قريب",
+      "daysLeft": -23,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
