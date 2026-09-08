@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "٨‏/٩‏/٢٠٢٦، ١١:١٠:٣٧ ص",
+  "lastUpdated": "٨‏/٩‏/٢٠٢٦، ١١:١٩:٠٤ ص",
   "tasks": [
     {
       "dept": "قسم PR",
@@ -1617,11 +1617,11 @@
       "description": "",
       "owner": "استاذ محمد الاتش ار",
       "urgency": "مهم ومستعجل",
-      "status": "قيد التنفيذ",
+      "status": "تم التنفيذ",
       "startDate": "19/08/2026",
       "deadline": "27/08/2026",
-      "daysLeft": 8,
-      "deadlineStatus": "قريب",
+      "daysLeft": -12,
+      "deadlineStatus": "منتهي",
       "notes": ""
     },
     {
